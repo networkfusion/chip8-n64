@@ -25,8 +25,8 @@
           "HARDWARE_REVISION" : "3",
           "BUILD_VERSION" : "0.0.2",
           "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-chip8/toolchain/gcc-toolchain-mips64",
-          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-chip8/toolchain/libdragon"
+          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/chip8-n64/toolchain/gcc-toolchain-mips64",
+          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/chip8-n64/toolchain/libdragon"
         }
       },
       "ED64_X7": {
@@ -37,8 +37,8 @@
           "HARDWARE_REVISION" : "7",
           "BUILD_VERSION" : "0.0.2",
           "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-chip8/toolchain/gcc-toolchain-mips64",
-          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-chip8/toolchain/libdragon"
+          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/chip8-n64/toolchain/gcc-toolchain-mips64",
+          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/chip8-n64/toolchain/libdragon"
         }
       },
         "64DRIVE_V1": {
@@ -49,8 +49,8 @@
             "HARDWARE_REVISION" : "1",
             "BUILD_VERSION" : "0.0.2",
             "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-            "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-chip8/toolchain/gcc-toolchain-mips64",
-            "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-chip8/toolchain/libdragon"
+            "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/chip8-n64/toolchain/gcc-toolchain-mips64",
+            "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/chip8-n64/toolchain/libdragon"
           }
         },
         "64DRIVE_V2": {
@@ -61,8 +61,8 @@
             "HARDWARE_REVISION" : "2",
             "BUILD_VERSION" : "0.0.2",
             "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-            "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-chip8/toolchain/gcc-toolchain-mips64",
-            "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-chip8/toolchain/libdragon"
+            "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/chip8-n64/toolchain/gcc-toolchain-mips64",
+            "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/chip8-n64/toolchain/libdragon"
         }
       },
       "ALL": {
@@ -73,8 +73,8 @@
           "HARDWARE_REVISION" : "0",
           "BUILD_VERSION" : "0.0.2",
           "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
-          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-chip8/toolchain/gcc-toolchain-mips64",
-          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-chip8/toolchain/libdragon"
+          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/chip8-n64/toolchain/gcc-toolchain-mips64",
+          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/chip8-n64/toolchain/libdragon"
         }
       }
     }
@@ -106,7 +106,7 @@
         "short": "Emulator",
         "settings": {
           "DEPLOY": "F:/Source/Repos/N64/cen64/cen64-windows-x86_64.exe",
-          "DEPLOY_PARAMETERS" : "-controller num=1 F:/Source/Repos/N64/cen64/pifdata.bin F:/Source/Repos/N64/cmake-chip8/build/chip8.n64"
+          "DEPLOY_PARAMETERS" : "-controller num=1 F:/Source/Repos/N64/cen64/pifdata.bin F:/Source/Repos/N64/chip8-n64/build/chip8.n64"
         }
       }
     }

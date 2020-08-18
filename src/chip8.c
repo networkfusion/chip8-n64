@@ -50,6 +50,8 @@ unsigned short sp;
 
 unsigned char keypad[16];
 
+void ReadController();
+
 int main(void)
 {
 	// enable interrupts on the CPU
@@ -298,23 +300,27 @@ int main(void)
 				break;
 
 			case 0xE000:
-				switch(opcode & 0x000F) {
+				switch (opcode & 0x000F) {
 
 					case 0x000E: // EX9E: Skips the next instruction if the key stored in VX is pressed
-						// keys not implemented yet
-						pc += 2;
+						if (keypad[V[(opcode & 0x0F00) >> 8]] != 0)
+							pc +=  4;
+						else
+							pc += 2;
 						break;
 
 					case 0x0001: // EXA1: Skips the next instruction if the key stored in VX isn't pressed
-						// keys not implemented yet
-						pc += 4;
+						if (keypad[V[(opcode & 0x0F00) >> 8]] == 0)
+							pc +=  4;
+						else
+							pc += 2;
 						break;
 
 					default:
 						cpu_running = 0;
 
-				}
-				break;
+            }
+            break;
 
 			case 0xF000:
 				switch(opcode & 0x00FF) {
@@ -324,11 +330,24 @@ int main(void)
 						pc += 2;
 						break;
 
+					
 					case 0x000A: // FX0A: A key press is awaited, and then stored in VX
-						// keys not implemented yet
-						//pc += 2;
-						break;
+					{				
+						int key_pressed = 0;
 
+						for(int i = 0; i < 16; ++i)
+						{
+							if(keypad[i] != 0)
+							{
+								V[(opcode & 0x0F00) >> 8] = i;
+								key_pressed = 1;
+							}
+						}
+
+						if(key_pressed) pc += 2;
+					
+                    	break;
+					}
 					case 0x0015: // FX15: Sets the delay timer to VX
 						delay_timer = V[(opcode & 0x0F00) >> 8];
 						pc += 2;
@@ -416,6 +435,9 @@ int main(void)
 		screen_damage = 0;
 		display_show(disp);
 
+		//handle controller input???
+		ReadController();
+
 		}
 
 		// update timers
@@ -428,10 +450,50 @@ int main(void)
 
 	}
 
-	//handle controller input???
-
 	while( !(disp = display_lock()) );
 	sprintf(tStr, "                               HALT invalid opcode %04X", opcode);
        	graphics_draw_text(disp, 20, 20, tStr);
 	display_show(disp);
+}
+
+void ReadController() { //I am sure we can do better, but good enough for now!
+
+    struct controller_data cd;
+
+    int controllers = get_controllers_present();
+    if (controllers & CONTROLLER_1_INSERTED)
+    {
+        controller_scan();
+        cd = get_keys_pressed();
+
+		//make sure the keys are all unpressed
+		for (int i = 0; i < 16; i++)
+		{
+			keypad[i] = 0;
+		}
+		
+
+        if (cd.c[0].up) keypad[0] = 1;
+        if (cd.c[0].down) keypad[1] = 1;
+        if (cd.c[0].left) keypad[2] = 1;
+        if (cd.c[0].right) keypad[3] = 1;
+        if (cd.c[0].A) keypad[4] = 1;
+        if (cd.c[0].B) keypad[5] = 1;
+        if (cd.c[0].Z) keypad[6] = 1;
+        if (cd.c[0].start)  keypad[7] = 1;
+        if (cd.c[0].C_up)  keypad[8] = 1;
+        if (cd.c[0].C_down)  keypad[9] = 1;
+		if (cd.c[0].C_left)  keypad[10] = 1;
+        if (cd.c[0].C_right)  keypad[11] = 1;
+		if (cd.c[0].L)  keypad[12] = 1;
+		if (cd.c[0].R)  keypad[13] = 1;
+
+
+        if ((cd.c[0].data & 0xff) >= 0x40 && (cd.c[0].data & 0xff) <= 0x60) keypad[0] = 1;
+        if ((cd.c[0].data & 0xff) >= 0xa0 && (cd.c[0].data & 0xff) <= 0xc0) keypad[1] = 1;
+        if ((cd.c[0].data & 0xff00) >= 0x4000 && (cd.c[0].data & 0xff00) <= 0x6000) keypad[2] = 1;
+        if ((cd.c[0].data & 0xff00) >= 0xa000 && (cd.c[0].data & 0xff00) <= 0xc000) keypad[3] = 1;
+
+    }
+
 }
