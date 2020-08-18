@@ -5,6 +5,10 @@
 #include <stdint.h>
 #include <libdragon.h>
 
+#ifndef FILE_NAME
+#define FILE_NAME "invaders.ch8"
+#endif
+
 static resolution_t res = RESOLUTION_640x480;
 static bitdepth_t bit = DEPTH_32_BPP;
 
@@ -89,10 +93,10 @@ int main(void)
 		memory[i] = fontset[i];
 	}
 
-	char otest;
+	//char otest;
 
 	// load in the rom from dfs
-	int dfp = dfs_open("blinky.ch8");
+	int dfp = dfs_open(FILE_NAME);
 	int fsize = dfs_size(dfp);
 
 	int fload = dfs_read(memory+512, 1, fsize, dfp);
@@ -380,7 +384,7 @@ int main(void)
 		// draw the screen
 		while( !(disp = display_lock()) );
 		graphics_fill_screen( disp, 0 );
-
+#ifdef DEBUG //Only output on debug
 		sprintf(tStr, "CHIP8 emulator for N64");
 		graphics_draw_text( disp, 20, 20, tStr );
         	sprintf(tStr, "ROM: %d/%d bytes\n", fsize, fload);
@@ -394,6 +398,7 @@ int main(void)
 			sprintf(tStr+strlen(tStr), "%02X%02X ", memory[i], memory[i+1]);
 		}
 		graphics_draw_text (disp, 20, 60, tStr );
+#endif
 
 		//for(int i = 0; i < 256; i++)
 	        //{
@@ -422,6 +427,8 @@ int main(void)
 		}
 
 	}
+
+	//handle controller input???
 
 	while( !(disp = display_lock()) );
 	sprintf(tStr, "                               HALT invalid opcode %04X", opcode);

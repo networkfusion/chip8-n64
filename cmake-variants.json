@@ -1,0 +1,114 @@
+{
+  "buildType": {
+    "default": "Debug",
+      "choices": { 
+        "debug": {
+          "short": "Debug",
+          "long": "Emit debug information without performing optimizations",
+          "buildType": "Debug"
+        },
+        "release": {
+          "short": "release",
+          "long": "Optimize for smallest binary size",
+          "buildType": "Release"
+        }   
+      }
+  },
+  "TARGET": {
+    "default": "ALL",
+    "choices": {
+      "ED64_V3": {
+        "short": "ED64_V3",
+        "settings": {
+          "ROM_NAME" : "chip8",
+          "HARDWARE_TYPE" : "ED64",
+          "HARDWARE_REVISION" : "3",
+          "BUILD_VERSION" : "0.0.2",
+          "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
+          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-chip8/toolchain/gcc-toolchain-mips64",
+          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-chip8/toolchain/libdragon"
+        }
+      },
+      "ED64_X7": {
+        "short": "ED64_X7",
+        "settings": {
+          "ROM_NAME" : "chip8",
+          "HARDWARE_TYPE" : "ED64",
+          "HARDWARE_REVISION" : "7",
+          "BUILD_VERSION" : "0.0.2",
+          "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
+          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-chip8/toolchain/gcc-toolchain-mips64",
+          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-chip8/toolchain/libdragon"
+        }
+      },
+        "64DRIVE_V1": {
+          "short": "64DRIVE_V1",
+          "settings": {
+            "ROM_NAME" : "chip8",
+            "HARDWARE_TYPE" : "64DRIVE",
+            "HARDWARE_REVISION" : "1",
+            "BUILD_VERSION" : "0.0.2",
+            "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
+            "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-chip8/toolchain/gcc-toolchain-mips64",
+            "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-chip8/toolchain/libdragon"
+          }
+        },
+        "64DRIVE_V2": {
+          "short": "64DRIVE_V2",
+          "settings": {
+            "ROM_NAME" : "chip8",
+            "HARDWARE_TYPE" : "64DRIVE",
+            "HARDWARE_REVISION" : "2",
+            "BUILD_VERSION" : "0.0.2",
+            "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
+            "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-chip8/toolchain/gcc-toolchain-mips64",
+            "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-chip8/toolchain/libdragon"
+        }
+      },
+      "ALL": {
+        "short": "All",
+        "settings": {
+          "ROM_NAME" : "chip8",
+          "HARDWARE_TYPE" : "ALL",
+          "HARDWARE_REVISION" : "0",
+          "BUILD_VERSION" : "0.0.2",
+          "CMAKE_TOOLCHAIN_FILE" : "CMake/toolchain.libdragon.cmake",
+          "TOOLCHAIN_PREFIX" : "F:/Source/Repos/N64/cmake-chip8/toolchain/gcc-toolchain-mips64",
+          "LIBDRAGON_PREFIX": "F:/Source/Repos/N64/cmake-chip8/toolchain/libdragon"
+        }
+      }
+    }
+  },
+  "DEPLOY": {
+    "default": "NONE",
+    "choices": {
+      "NONE": {
+        "short": "None",
+        "settings": {
+          "DEPLOY": ""
+        }
+      },
+      "64DRIVE": {
+        "short": "64Drive",
+        "settings": {
+          "DEPLOY": "F:/Source/Repos/N64/64drive/loader64",
+          "DEPLOY_PARAMETERS" : "./build/chip8.n64"
+        }
+      },
+      "ED64": {
+        "short": "ED64",
+        "settings": {
+          "DEPLOY": "F:/Source/Repos/N64/Everdrive64RomLoader/N64LoaderConsole/bin/Debug/N64LoaderConsole",
+          "DEPLOY_PARAMETERS" : "./build/chip8.n64"
+        }
+      },
+      "EMULATOR": {
+        "short": "Emulator",
+        "settings": {
+          "DEPLOY": "F:/Source/Repos/N64/cen64/cen64-windows-x86_64.exe",
+          "DEPLOY_PARAMETERS" : "-controller num=1 F:/Source/Repos/N64/cen64/pifdata.bin F:/Source/Repos/N64/cmake-chip8/build/chip8.n64"
+        }
+      }
+    }
+  }
+}

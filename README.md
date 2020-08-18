@@ -1,5 +1,16 @@
-# chip8 n64
+# chip8 Emulator for the N64
+Generates a ROM built with CMake
 
-A chip 8 emulator written for the Nintendo 64.
+Note: this is currently WiP for Windows 10 based dev environments.
 
-You will need a [libdragon](https://dragonminded.com/n64dev/) environment and toolchain configured so that you can cross-compile for the N64's MIPS processor.
+# this example requires libdragon specific changes that can be found in https://github.com/n64-tools branch develop
+
+Requires:
+* https://cmake.org/download/ to be installed
+* VSCode with `CMake`, `CMake Tools` and `C/C++` extensions
+
+* Run `UpdateToolchain.ps1` to download and install the required toolchain and libdragon files to the projects toolchain directory
+* Adjust cmake-variants.json for your paths
+* Adjust .vscode/settings.json for your paths
+
+In vscode hit F7 to build the ROM
