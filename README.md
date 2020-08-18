@@ -3,7 +3,8 @@ Generates a ROM built with CMake
 
 Note: this is currently WiP for Windows 10 based dev environments.
 
-# this example requires libdragon specific changes that can be found in https://github.com/n64-tools branch develop
+This example requires libdragon specific changes that can be found in https://github.com/n64-tools branch develop. This will automatically 
+be installed as part of the update process (below).
 
 Requires:
 * https://cmake.org/download/ to be installed
